@@ -27,10 +27,18 @@
     background: #f0c14b;
     border: 1px solid;
     margin-top: 10px;
+    padding: 7px;
+    border-radius: 5px;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
   }
   
+  .product > button:hover{
+    color: white;
+    background: #9a6f03;
+    cursor: pointer;
+  }
+
   .product__price {
     margin-top: 5px;
   }

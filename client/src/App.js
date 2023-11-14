@@ -1,12 +1,20 @@
 import './App.css';
 import Header from './components/Header'
 import Home from './components/Home'
-// import {}
+import Checkout from './components/Checkout'
+import Error from './components/Error'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 function App() {
   return (
     <>
-      <Header/>
-      <Home/>
+      <BrowserRouter>
+        <Header/>
+        <Routes>
+          <Route exact path="/" element={<Home/>}/>
+          <Route exact path="/checkout" element={<Checkout/>}/>
+          <Route path="*" element={<Error/>}/>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
