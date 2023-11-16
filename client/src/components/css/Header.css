@@ -73,3 +73,10 @@
     margin-right: 10px;
     color: white;
 }
+.sign_in{
+    color: white;
+    text-decoration: none;
+}
+.sign_in:hover{
+    color: rgb(162, 162, 162);
+}
