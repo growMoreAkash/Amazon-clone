@@ -1,29 +1,33 @@
 import React, { useState } from 'react';
 import './css/Login.css'
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword ,signInWithEmailAndPassword} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../firebase';
 
 function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const auth = getAuth()
+
+
 
     const signIn = e => {
         e.preventDefault();
         if(!email || !password) return alert("Please provide the cradentials")
+        console.log({email})
             signInWithEmailAndPassword(auth,email, password)
-            .then(auth => {
-                console.log(auth)
-                if (auth) navigate('/')
+            .then(user => {
+                console.log(user)
+                if (user) navigate('/')
+                else alert("Wrong user credantials")
             })
             .catch(error => alert(error.message))
     }
 
     const register = e => {
         e.preventDefault();
-        
+
         createUserWithEmailAndPassword(auth,email, password)
             .then((userCredential) => {
                 // it successfully created a new user with email and password
@@ -39,7 +43,7 @@ function Login() {
             <Link to='/'>
                 <img
                     className="login__logo"
-                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png' 
+                    src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png'
                 />
             </Link>
 
