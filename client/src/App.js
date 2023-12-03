@@ -10,15 +10,13 @@ import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import {onAuthStateChanged} from "firebase/auth"
+import { onAuthStateChanged } from "firebase/auth"
 import { useEffect } from 'react';
 
 
 
 
-const promise = loadStripe(
-  "pk_test_51HPvU9DFg5koCdLGJJbNo60QAU99BejacsvnKvT8xnCu1wFLCuQP3WBArscK3RvSQmSIB3N0Pbsc7TtbQiJ1vaOi00X9sIbazL"
-);
+const promise = loadStripe("pk_test_51OJ4CHSJ7Omkeg3wrp3nQnHMhzHE9qvqOG1ZGl6i6l6HFLu5XribkfCwkBYu3CkBMQQdrDuh7IJXCcixqKGTAnbP002cGX9Qi8")
 
 
 function App() {
@@ -27,7 +25,7 @@ function App() {
   useEffect(() => {
     // will only run once when the app component loads...
 
-    onAuthStateChanged(auth,(authUser) => {
+    onAuthStateChanged(auth, (authUser) => {
       console.log("THE USER IS >>> ", authUser);
 
       if (authUser) {
@@ -54,7 +52,13 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/checkout" element={<Checkout />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/payment" element={<Payment />} />
+
+
+          <Route exact path="/payment" element={
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          } />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

@@ -27,7 +27,7 @@ function Login() {
 
     const register = e => {
         e.preventDefault();
-
+        if(!email || !password) return alert("Please provide the cradentials")
         createUserWithEmailAndPassword(auth,email, password)
             .then((userCredential) => {
                 // it successfully created a new user with email and password

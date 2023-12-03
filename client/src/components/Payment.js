@@ -23,17 +23,17 @@ function Payment() {
     const [clientSecret, setClientSecret] = useState(true);
 
     useEffect(() => {
-        // generate the special stripe secret which allows us to charge a customer
+//         // generate the special stripe secret which allows us to charge a customer
         const getClientSecret = async () => {
             const response = await axios({
                 method: 'post',
-                // Stripe expects the total in a currencies subunits
+//                 // Stripe expects the total in a currencies subunits
                 url: `/payments/create?total=${getBasketTotal(basket) * 100}`
             });
             setClientSecret(response.data.clientSecret)
         }
 
-        getClientSecret();
+//         getClientSecret();
     }, [basket])
 
     console.log('THE SECRET IS >>>', clientSecret)
@@ -121,7 +121,7 @@ function Payment() {
                         ))}
                     </div>
                 </div>
-            
+
 
                 {/* Payment section - Payment method */}
                 <div className='payment__section'>
@@ -161,3 +161,84 @@ function Payment() {
 }
 
 export default Payment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react'
+// import { Link } from 'react-router-dom';
+// import './css/Payment.css'
+// import CheckoutProduct from './CheckoutProduct';
+// import { useStateValue } from "../StateProvider";
+// import {Elements} from '@stripe/react-stripe-js'
+// import {loadStripe} from '@stripe/stripe-js'
+
+// const Payment = () => {
+
+//     const [{ basket, user }, dispatch] = useStateValue();
+//     return (
+//         <div className='payment'>
+//             <div className='payment__container'>
+//                 <h1>
+//                     Checkout (
+//                     <Link to="/checkout">{basket?.length} items</Link>
+//                     )
+//                 </h1>
+//                 <div className='payment__section'>
+//                     <div className='payment__title'>
+//                         <h3>Delivery Address</h3>
+//                     </div>
+//                     <div className='payment__address'>
+//                                        <p>{user?.email}</p>                         <p>123 React Lane</p>
+//                         <p>Los Angeles, CA</p>
+//                     </div>
+//                 </div>
+
+//                 <div className='payment__section'>                     <div className='payment__title'>
+//                     <h3>Review items and delivery</h3>
+//                 </div>
+//                     <div className='payment__items'>
+//                         {basket.map(item => (
+//                             <CheckoutProduct
+//                                 id={item.id}
+//                                 title={item.title}
+//                                 image={item.image}
+//                                 price={item.price}
+//                                 rating={item.rating}
+//                             />
+//                         ))}
+//                     </div>
+//                 </div>
+
+//                 <div className='payment__section'>
+//                     <div className="payment__title">
+//                         <h3>Payment Method</h3>
+//                     </div>
+//                     <div className="payment__details">
+
+//                     </div>
+//                 </div>
+
+//             </div>
+//         </div>
+//     )
+// }
+
+// export default Payment
